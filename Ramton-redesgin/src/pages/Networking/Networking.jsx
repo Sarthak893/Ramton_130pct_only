@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import SolutionHero from "../../components/SolutionHero";
 import Partners from "../../components/SolutionTechnologyPartners";
-import globeImage from "../../assets/globe.png";
 
 function SectionLabel({ children }) {
   return (
@@ -73,8 +72,6 @@ export default function Networking() {
         title="Connected infrastructure."
         accent="Built for business."
         description="Build a reliable, secure and scalable network environment that keeps people, devices, applications and locations connected."
-        image={globeImage}
-        imageAlt="Connected global networking illustration"
       />
 
       {/* SERVICES GRID */}

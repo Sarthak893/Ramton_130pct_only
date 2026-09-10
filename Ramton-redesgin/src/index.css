@@ -51,6 +51,297 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* =========================================================
+   SOLUTION PAGES — SHARED MOTION, STACKING & MEDIA TREATMENT
+========================================================= */
+
+.ramton-solution-page {
+  overflow: clip !important;
+}
+
+.ramton-solution-hero {
+  isolation: isolate;
+}
+
+@keyframes solution-hero-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes solution-hero-art-in {
+  from {
+    opacity: 0;
+    transform: translate3d(18px, 20px, 0) scale(0.82) rotate(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotate(0);
+  }
+}
+
+@keyframes solution-grid-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+}
+
+.ramton-hero-capsule,
+.ramton-hero-heading,
+.ramton-hero-copy,
+.ramton-hero-cta {
+  animation: solution-hero-rise 0.78s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ramton-hero-capsule {
+  animation-delay: 0.08s;
+}
+
+.ramton-hero-heading {
+  animation-delay: 0.2s;
+}
+
+.ramton-hero-copy {
+  animation-delay: 0.34s;
+}
+
+.ramton-hero-cta {
+  animation-delay: 0.48s;
+}
+
+.ramton-hero-art {
+  animation: solution-hero-art-in 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.58s both;
+  filter: drop-shadow(0 32px 34px rgba(42, 20, 9, 0.17));
+}
+
+.ramton-hero-grid {
+  transform-origin: center;
+  animation: solution-grid-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ramton-hero-objects {
+  animation: solution-hero-rise 1s cubic-bezier(0.16, 1, 0.3, 1) 0.12s both;
+}
+
+.ramton-section-reveal {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ramton-section-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.ramton-heading-reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0) scale(0.96);
+  transform-origin: center bottom;
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+}
+
+.ramton-section-reveal.is-visible .ramton-heading-reveal {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.ramton-card-reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0) scale(0.985);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease !important;
+  transition-delay: calc(var(--ramton-card-index, 0) * 90ms);
+}
+
+.ramton-section-reveal.is-visible .ramton-card-reveal {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.ramton-section-reveal.is-visible .ramton-card-reveal:hover {
+  transform: translate3d(0, -7px, 0) scale(1.012);
+  box-shadow: 0 30px 68px -34px rgba(242, 101, 34, 0.34) !important;
+}
+
+.ramton-stack-section {
+  overflow: clip !important;
+}
+
+.ramton-solution-stack {
+  position: relative;
+  display: block !important;
+}
+
+.ramton-solution-stack > .ramton-solution-card {
+  position: sticky !important;
+  top: calc(82px + var(--ramton-stack-index, 0) * 9px) !important;
+  z-index: calc(20 + var(--ramton-stack-index, 0)) !important;
+  width: 100%;
+  margin: 0 0 26px !important;
+  border: 2px solid transparent !important;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(242, 101, 34, 0.1),
+    0 28px 72px -44px rgba(15, 23, 42, 0.3);
+  isolation: isolate;
+}
+
+.ramton-media-frame {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 18px;
+}
+
+.ramton-media-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  border: 2px solid #f26522;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.ramton-media-frame::after {
+  content: "";
+  position: absolute;
+  z-index: 21;
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow:
+    0 0 0 1px rgba(242, 101, 34, 0.34),
+    0 0 10px rgba(255, 255, 255, 0.9);
+  offset-path: inset(1px round 17px);
+  offset-distance: 0%;
+  animation: ramton-pixel-border 5.2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes ramton-pixel-border {
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.ramton-media-frame img {
+  border-radius: inherit;
+  transition:
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.6s ease !important;
+}
+
+.ramton-media-frame:hover img,
+.ramton-solution-card:hover .ramton-media-frame img {
+  transform: scale(1.045);
+}
+
+.ramton-center-media {
+  background: #f7f7f7 !important;
+}
+
+.ramton-center-media img[data-why-choose-art="true"] {
+  object-fit: cover !important;
+  transform: scale(1.09);
+}
+
+.ramton-section-reveal.is-visible .ramton-center-media img[data-why-choose-art="true"] {
+  transform: scale(1);
+}
+
+.ramton-static-media::after {
+  display: none;
+}
+
+.ramton-solution-page .ramton-card-reveal,
+.ramton-solution-page .ramton-solution-card,
+.ramton-solution-page .solution-card-border,
+.ramton-solution-page .ramton-solution-card.solution-card-border,
+.ramton-solution-page .ramton-card-reveal:hover,
+.ramton-solution-page .ramton-solution-card:hover,
+.ramton-solution-page .solution-card-border:hover,
+.ramton-solution-page .ramton-solution-card.solution-card-border:hover {
+  border-color: transparent !important;
+}
+
+.ramton-premium-cta {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s ease,
+    background-color 0.35s ease !important;
+}
+
+.ramton-premium-cta:hover {
+  transform: translate3d(0, -4px, 0) scale(1.015);
+  box-shadow:
+    0 22px 42px -18px rgba(242, 101, 34, 0.78),
+    0 0 0 5px rgba(242, 101, 34, 0.1) !important;
+}
+
+.ramton-final-cta > div:last-child {
+  transform-origin: center bottom;
+}
+
+@media (max-width: 767px) {
+  .ramton-solution-stack > .ramton-solution-card {
+    position: relative !important;
+    top: auto !important;
+    margin-bottom: 18px !important;
+    border-radius: 20px;
+  }
+
+  .ramton-section-reveal {
+    transform: translate3d(0, 26px, 0);
+  }
+
+  .ramton-hero-art {
+    max-width: 410px;
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ramton-solution-page *,
+  .ramton-solution-page *::before,
+  .ramton-solution-page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .ramton-section-reveal,
+  .ramton-heading-reveal,
+  .ramton-card-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
 /* ═══════════════════════════════════════════════
    SCROLL-REVEAL

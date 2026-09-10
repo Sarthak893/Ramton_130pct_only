@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Silk from "../Silk.jsx";
-import softwareImage from "../../assets/software.png";
 import {
   ArrowRight,
   Cloud,
@@ -313,8 +312,6 @@ export default function Software() {
         title="Software that works"
         accent="the way business does."
         description="Plan, deploy and support practical software solutions that improve productivity, connect teams and help your organization operate with greater efficiency."
-        image={softwareImage}
-        imageAlt="Modern software solutions"
       />
 
       {/* INTRO / VALUE */}

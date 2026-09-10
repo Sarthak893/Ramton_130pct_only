@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Silk from '../Silk.jsx';
-import renameImage from "../../assets/rename.png";
 import serverImage from "../../assets/server.jpeg";
 import SolutionHero from "../../components/SolutionHero";
 import {
@@ -306,8 +305,6 @@ export default function Hardware() {
         title="Powering modern business."
         accent="Reliable hardware."
         description="Choose, deploy and support dependable business computers, servers and workplace technology designed around your operational needs."
-        image={renameImage}
-        imageAlt="Modern business hardware solutions"
       />
 
       {/* CATEGORIES */}
